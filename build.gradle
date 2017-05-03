@@ -1,0 +1,71 @@
+group 'net.mitrol'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+
+sourceCompatibility = 1.8
+
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'me.champeau.gradle:jmh-gradle-plugin:0.1'
+    }
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+apply plugin: 'me.champeau.gradle.jmh'
+
+jmh {
+    include = 'net\\.mitrol\\.codec\\.CipherPerformanceBenchMark.*'
+    humanOutputFile = null
+}
+
+dependencies {
+
+
+    //Log4j
+    compile "log4j:log4j:$log4jVersion"
+    compile "log4j:apache-log4j-extras:$log4jExtrasVersion"
+
+    //Apache Commons
+    compile "org.apache.commons:commons-lang3:$apacheCommonsVersion"
+    compile "org.apache.commons:commons-collections4:$apacheCommonsCollectionsVersion"
+
+    //ValidationAPI
+    compile "javax.validation:validation-api:$validationApiVersion"
+
+    //JSON
+    compile "com.google.code.gson:gson:$gsonVersion"
+    compile "org.json:org.json:$orgJsonVersion"
+
+    //JNA
+    compile "net.java.dev.jna:jna:$jnaVersion"
+
+    //SLF4j
+    compile "org.slf4j:slf4j-api:$slf4jVersion"
+    compile "org.slf4j:slf4j-log4j12:$slf4jLog4jVersion"
+
+    //ffmpeg
+    compile "org.modelmapper:modelmapper:$ffmpegMapperVersion"
+    compile "com.google.guava:guava:$guavaVersion"
+
+    //Apache IO
+    compile "org.apache.commons:commons-io:$apacheIOVersion"
+
+    //jmh
+    testCompile "org.openjdk.jmh:jmh-core:$jmhVersion"
+    testCompile "org.openjdk.jmh:jmh-generator-annprocess:$jmhVersion"
+
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.11' //version required
+}
