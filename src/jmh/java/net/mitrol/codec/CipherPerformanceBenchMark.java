@@ -1,6 +1,5 @@
 package net.mitrol.codec;
 
-import net.mitrol.codec.*;
 import org.openjdk.jmh.annotations.*;
 
 import java.util.concurrent.TimeUnit;
@@ -19,15 +18,16 @@ public class CipherPerformanceBenchMark {
     public static final String PCMU = "PCMU";
 
     private static byte[] pcmData = new byte[320];
-    @Param({PCMU, PCMA, G729, OPUS})
+    //@Param({PCMU, PCMA, G729, OPUS})
+    @Param({G729, OPUS})
     private String cipherName;
 
     public static <T extends Cipher> byte[] encode(byte[] pcmData, T cipher) {
         return cipher.encode(pcmData).get(0);
     }
 
-    public static <T extends Cipher> byte[] decode(byte[] encriptedData, T cipher) {
-        return cipher.decode(encriptedData);
+    public static <T extends Cipher> byte[] decode(byte[] encryptedData, T cipher) {
+        return cipher.decode(encryptedData);
     }
 
     @Benchmark

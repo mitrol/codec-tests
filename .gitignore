@@ -13,7 +13,7 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
+#*.jar
 *.war
 *.ear
 *.zip
@@ -26,3 +26,6 @@ hs_err_pid*
 .gradle/
 .idea/
 build/
+gradle/
+gradlew
+gradlew.bat
